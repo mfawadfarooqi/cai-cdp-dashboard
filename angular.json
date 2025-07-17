@@ -35,7 +35,10 @@
               "node_modules/animate.css/animate.min.css"
             ],
             "scripts": [
-              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
+              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
+              "node_modules/d3/dist/d3.min.js",
+              "node_modules/topojson/dist/topojson.min.js",
+              "node_modules/datamaps/dist/datamaps.world.min.js"
             ]
           },
           "configurations": {
