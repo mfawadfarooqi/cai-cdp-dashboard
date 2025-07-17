@@ -8,6 +8,7 @@ import {Login} from '../../../Services/guards/guards-interfece';
 import {AuthService} from '../../../Services/auth.service';
 import {NgClass, NgIf} from '@angular/common';
 import {NgbAlert} from '@ng-bootstrap/ng-bootstrap';
+import {DateRangeServiceService} from '../../../Services/genericComponentService/date-range-service.service';
 
 @Component({
   selector: 'app-login',
@@ -34,7 +35,7 @@ export class LoginComponent implements OnInit {
   loginResponse: any;
   constructor(private fb: FormBuilder ,private router: Router,
               private guardService: AuthService, private formErrorService: FormErrorService,
-              private route: ActivatedRoute,
+              private route: ActivatedRoute,private dateRangeService: DateRangeServiceService
   ) {
   }
 
@@ -118,7 +119,20 @@ export class LoginComponent implements OnInit {
 
           if (this.loginResponse.responseCode === "200") {
             this.hideFormSubscription = false
+            const now = new Date();
 
+            let startDate = new Date(now.getTime() - 1096 * 24 * 60 * 60 * 1000)
+            startDate.setHours(0, 0, 0, 0);
+            startDate.setHours(startDate.getHours() + 5)
+
+            // startDate = this.adjustAndAddHours(startDate, 0, 0, 0, 0);
+            const endDate = new Date(now);
+            endDate.setHours(23, 59, 59, 999);
+            endDate.setHours(endDate.getHours() + 5);
+
+            // Set the date range
+            this.dateRangeService.setDateRange(startDate, endDate);
+            sessionStorage.setItem('rangeValue', 'noFilter');
               this.router.navigate(['modules']);
               // store user details and jwt token in local storage to keep user logged in between page refreshes
               localStorage.setItem('user', JSON.stringify(this.loginResponse.uaaLoginDto.accessToken));
