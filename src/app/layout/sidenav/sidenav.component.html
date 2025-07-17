@@ -1,0 +1,57 @@
+<section class="main-container">
+  <app-header></app-header>
+  <div class="sub-section">
+
+    <nav class="menue">
+      <h4 class="p-2 mt-2">Main Menu</h4>
+
+      <ul >
+        <li *ngFor="let item of menuItems">
+          <!-- If the item has children, use a <span> tag with the chevron icon -->
+          <span *ngIf="item.children && item.children.length > 0" (click)="toggleSubMenu(item)">
+            <i *ngIf="item.icon" class="{{item.icon}} icon"></i>
+            {{item.label}}
+            <i class="fas fa-chevron-right arrow" [ngClass]="{'rotated': item.expanded}"></i>
+          </span>
+          <!-- If the item does not have children, use routerLink for routing -->
+          <a *ngIf="!item.children || item.children.length === 0" [routerLink]="item.route"
+             routerLinkActive="active-link" >
+            <i *ngIf="item.icon" class="{{item.icon}} icon"></i> {{item.label}}
+          </a>
+          <!-- Render the submenu -->
+
+        </li>
+      </ul>
+
+
+      <h4 class="p-2" *ngIf="userRole !== 'soc-analyst' && userRole !== 'org-analyst'">Admin Section</h4>
+      <ul *ngIf="userRole === 'partner-manager'">
+        <li *ngFor="let item of menuItemUser">
+          <!-- If the item has children, use a <span> tag with the chevron icon -->
+          <span *ngIf="item.children && item.children.length > 0" (click)="toggleSubMenu(item)">
+            <i *ngIf="item.icon" class="{{item.icon}} icon"></i>
+            {{item.label}}
+            <i class="fas fa-chevron-right arrow" [ngClass]="{'rotated': item.expanded}"></i>
+          </span>
+          <!-- If the item does not have children, use routerLink for routing -->
+          <a *ngIf="!item.children || item.children.length === 0" [routerLink]="item.route"
+             routerLinkActive="active-link">
+            <i *ngIf="item.icon" class="{{item.icon}} icon"></i> {{item.label}}
+          </a>
+          <!-- Render the submenu -->
+
+        </li>
+      </ul>
+
+    </nav>
+
+
+
+    <div class="main-body">
+      <div class="sub-body">
+        <router-outlet></router-outlet>
+      </div>
+      <app-footer></app-footer>
+    </div>
+  </div>
+</section>

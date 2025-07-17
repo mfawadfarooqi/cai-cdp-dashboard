@@ -1,0 +1,11 @@
+<div class="card-design h-100">
+  <h3>Top Five Services</h3>
+
+  <div *ngIf="!showNoData; else noData">
+    <div echarts [options]="severityBarOptions" class="graph-setting"></div>
+  </div>
+
+  <ng-template #noData>
+    <div class="no-data-message">No records found for Services</div>
+  </ng-template>
+</div>

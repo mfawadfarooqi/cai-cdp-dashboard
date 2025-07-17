@@ -1,0 +1,22 @@
+<div class="custom-select mb-4">
+  <label *ngIf="label" class="form-label">{{ label }}</label>
+  <div class="select-box" (click)="toggleDropdown()">
+    <ng-container *ngIf="selectedOptions.length > 0; else placeholderText">
+      <span class="tag" *ngFor="let option of selectedOptions">
+        {{ option }}
+        <span class="remove-tag" (click)="removeOption(option)">×</span>
+      </span>
+    </ng-container>
+    <ng-template #placeholderText>
+      {{ placeholder }}
+    </ng-template>
+  </div>
+  <div class="options" *ngIf="isDropdownOpen">
+    <div class="option" *ngFor="let option of options" (click)="selectOption(option.value)"
+      [class.selected]="isSelected(option.value)">
+      {{ option.name }}
+      <span *ngIf="option.count !== false"> ( {{ option.count }} ) </span>
+      <span *ngIf="isSelected(option.value)" class="tick-icon">✔</span>
+    </div>
+  </div>
+</div>

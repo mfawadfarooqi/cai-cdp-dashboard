@@ -1,0 +1,12 @@
+<div class="card-design h-100">
+  <h3>Top Malware Attack Count</h3>
+
+  <div *ngIf="!showNoData; else noData">
+    <div echarts [options]="severityDonutOptions" class="graph-setting"></div>
+  </div>
+
+  <ng-template #noData>
+    <div class="no-data-message">No records found</div>
+  </ng-template>
+</div>
+

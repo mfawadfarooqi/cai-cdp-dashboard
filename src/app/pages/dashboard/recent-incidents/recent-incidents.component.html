@@ -1,0 +1,52 @@
+<div class="grid-design card-design h-100">
+
+  <div class="row">
+    <div class="col-8">
+      <h3>{{ labelContent.topAttacksBySeverity }}</h3>
+    </div>
+  </div>
+
+  <div class="tableSection mt-3">
+
+    <table>
+      <thead>
+      <tr>
+        <th (click)="sortBy('os')"
+            [class.sorted]="isSortedBy('os')"
+            [class.ascending]="isSortedBy('os') && isSortOrderAscending()"
+            [class.descending]="isSortedBy('os') && !isSortOrderAscending()"
+        >{{ labelContent.os }}</th>
+
+        <th (click)="sortBy('date')"
+            [class.sorted]="isSortedBy('date')"
+            [class.ascending]="isSortedBy('date') && isSortOrderAscending()"
+            [class.descending]="isSortedBy('date') && !isSortOrderAscending()"
+        >{{ labelContent.timestamp }}</th>
+
+        <th (click)="sortBy('protocol')"
+        [class.sorted]="isSortedBy('protocol')"
+        [class.ascending]="isSortedBy('protocol') && isSortOrderAscending()"
+        [class.descending]="isSortedBy('protocol') && !isSortOrderAscending()"
+        >{{ labelContent.protocol }}</th>
+        <th (click)="sortBy('ip')"
+            [class.sorted]="isSortedBy('ip')"
+            [class.ascending]="isSortedBy('ip') && isSortOrderAscending()"
+            [class.descending]="isSortedBy('ip') && !isSortOrderAscending()">{{ labelContent.attackerIP }}</th>
+        <th></th>
+
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let item of investigationData">
+        <td>{{ item.os }}</td>
+        <td>{{ item.date }}</td>
+        <td>{{ item.protocol }}</td>
+        <td>{{ item.ip }}</td>
+        <td><a href="javascript:void(0)" (click)="viewDetails(item.id)">   <i class="fa-solid fa-eye"></i></a></td>
+
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>

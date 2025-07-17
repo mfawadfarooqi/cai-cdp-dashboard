@@ -1,0 +1,53 @@
+<div class="container-fluid p-3">
+  <div class="row">
+    <div class="col-lg-12 py-2">
+      <h2>{{ labelContent.dashboard }}</h2>
+    </div>
+  </div>
+
+  <div class="row g-3">
+      <div class="col-lg-12">
+          <app-investagtion-state-time></app-investagtion-state-time>
+      </div>
+    <div class="col-lg-12">
+      <app-coverage></app-coverage>
+    </div>
+
+      <div class="col-lg-12">
+          <app-recent-incidents></app-recent-incidents>
+      </div>
+
+
+
+
+    <div class="col-lg-6">
+      <app-mean-time></app-mean-time>
+    </div>
+    <div class="col-lg-6">
+      <app-time-response></app-time-response>
+    </div>
+    <div class="col-lg-6">
+      <app-top-pie-componenets [credentialsChartType]="'USER'"></app-top-pie-componenets>
+    </div>
+    <div class="col-lg-6">
+      <app-top-pie-componenets [credentialsChartType]="'PASSWORD'"></app-top-pie-componenets>
+    </div>
+    <div class="col-lg-6">
+      <app-top-pie-componenets  [credentialsChartType]="'INPUT'"></app-top-pie-componenets>
+    </div>
+    <div class="col-lg-6">
+      <app-top-pie-componenets [credentialsChartType]="'TOOL'"></app-top-pie-componenets>
+    </div>
+    <div class="col-lg-6">
+      <app-top-operation-systems></app-top-operation-systems>
+    </div>
+    <div class="col-lg-6">
+      <app-top-five-services></app-top-five-services>
+    </div>
+<div class="col-lg-12">
+      <app-top-melware-attack></app-top-melware-attack>
+    </div>
+
+  </div>
+</div>
+

@@ -1,0 +1,89 @@
+<header>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-6">
+<!--        <img src="../../../assets/images/inner-logo.svg" alt=""/>-->
+        <h5>{{title}}</h5>
+      </div>
+      <div class="col-6 d-flex justify-content-end">
+<ul>
+
+
+
+  <li ngbDropdown class="ms-2" #dropdown="ngbDropdown">
+    <a href="#" id="dropdownForm1" ngbDropdownToggle (click)="preventDefault($event)" placement="bottom"
+       title="Open Calendar">
+      <i class="fa-solid fa-calendar-days"></i>
+    </a>
+    <div ngbDropdownMenu aria-labelledby="dropdownForm1" class="dropdown-menu-end">
+      <div class="row">
+        <div class="col-3">
+          <a
+            href="javascript:void(0)"
+            (click)="setPredefinedRange('today', dropdown)"
+            [class.active]="selectedRange === 'today'">
+            {{ labelContent.today }}
+          </a>
+          <a
+            href="javascript:void(0)"
+            (click)="setPredefinedRange('yesterday', dropdown)"
+            [class.active]="selectedRange === 'yesterday'">
+            {{ labelContent.yesterday }}
+          </a>
+          <a
+            href="javascript:void(0)"
+            (click)="setPredefinedRange('last7Days', dropdown)"
+            [class.active]="selectedRange === 'last7Days'">
+            {{ labelContent.last7Days }}
+          </a>
+          <a
+            href="javascript:void(0)"
+            (click)="setPredefinedRange('last30Days', dropdown)"
+            [class.active]="selectedRange === 'last30Days'">
+            {{ labelContent.last30Days }}
+          </a>
+          <a
+            href="javascript:void(0)"
+            (click)="setPredefinedRange('last90Days', dropdown)"
+            [class.active]="selectedRange === 'last90Days'">
+            {{ labelContent.last90Days }}
+          </a>
+          <a
+            href="javascript:void(0)"
+            (click)="setPredefinedRange('last1Year', dropdown)"
+            [class.active]="selectedRange === 'last1Year'">
+            {{ labelContent.last1Year }}
+          </a>
+          <br><br>
+          <a
+            href="javascript:void(0)"
+            (click)="setPredefinedRange('noFilter', dropdown)"
+            class="clearbtn"
+          >
+            Clear
+          </a>
+        </div>
+
+        <div class="col-9">
+          <ngb-datepicker #dp (dateSelect)="onDateSelection($event, dropdown)" [displayMonths]="2"
+                          [dayTemplate]="t" outsideDays="hidden"></ngb-datepicker>
+          <ng-template #t let-date let-focused="focused">
+          <span class="custom-day"
+                [class.focused]="focused && selectedRange !== 'noFilter'"
+                [class.range]="isRange(date) && selectedRange !== 'noFilter'"
+                [class.faded]="isHovered(date) || isInside(date) && selectedRange !== 'noFilter'"
+                (mouseenter)="hoveredDate = date"
+                (mouseleave)="hoveredDate = null"
+          >
+            {{ date.day }}
+          </span>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+  </li>
+</ul>
+      </div>
+    </div>
+  </div>
+</header>

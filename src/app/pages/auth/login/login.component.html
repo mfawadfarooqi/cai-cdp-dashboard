@@ -1,0 +1,63 @@
+<section class="login-page">
+  <div class="login-form">
+  <img src="assets/images/logo-xti.svg" alt="">
+    <h2 class="form-heading mt-4">{{ labelContent.signIn }}</h2>
+    <div *ngIf="hideFormSubscription">
+
+      <ngb-alert [type]=" 'danger'" [dismissible]="false">
+        {{ responseMsgSubscription }}
+      </ngb-alert>
+    </div>
+
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" >
+      <!-- Email Field -->
+      <div class="mb-3">
+        <label class="form-label">{{ labelContent.inputEmail }}</label>
+        <input type="text" class="form-control form-control-lg" formControlName="email">
+        <!-- Email Errors -->
+
+      </div>
+
+      <!-- Password Field -->
+      <div class="mb-3">
+        <label class="form-label">{{ labelContent.inputPassword }}</label>
+        <div class="input-group">
+          <input
+            [type]="showPassword ? 'text' : 'password'"
+            class="form-control form-control-lg"
+            formControlName="password"
+            [ngClass]="{ 'is-invalid': submitted && formControls['password'].errors }">
+          <button
+            type="button"
+            class="main-button btn-outline-secondary"
+            (click)="togglePasswordVisibility()"
+            tabindex="-1">
+            <i class="fa" [ngClass]="showPassword ? 'fa-eye-slash' : 'fa-eye'"></i>
+          </button>
+        </div>
+        <!-- Password Errors -->
+        <div *ngIf="submitted && formControls['password'].errors" class="invalid-feedback">
+          {{ getPasswordErrorMessage() }}
+        </div>
+      </div>
+
+      <!-- Forgot Password Link -->
+      <div class="my-4 text-end">
+        <a routerLink="/forgot-password">{{ labelContent.forgotPassword }}</a>
+      </div>
+
+      <!-- Submit Button -->
+      <button type="submit"  *ngIf="!loading" class="main-button w-100"  >{{ labelContent.login }}</button>
+
+      <!--loader -->
+      <button type="button"  *ngIf="loading" class="w-100 mt-4 loaderLogin" >
+        <span class="loader"></span>
+      </button>
+
+      <!--register -->
+      <!--      <button type="button" routerLink="/register" class="main-button w-100 mt-4" >{{ labelContent.register }}</button>-->
+    </form>
+
+
+  </div>
+</section>
